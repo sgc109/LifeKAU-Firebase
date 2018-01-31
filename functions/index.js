@@ -9,9 +9,9 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 });
 
 
-exports.clearReviews = functions.https.onRequest((request, response) => {
+exports.clearFoodReviews = functions.https.onRequest((request, response) => {
     var db = admin.database();
-    var donorDbRef = db.ref('reviews');
+    var donorDbRef = db.ref('Food_reviews');
     var updateVal = {};
 
     return donorDbRef
@@ -22,9 +22,9 @@ exports.clearReviews = functions.https.onRequest((request, response) => {
             });
             return donorDbRef.update(updateVal, (error) => {
                 if (!error)
-                    res.status(200).send('succeed deleting data!');
+                    response.status(200).send('succeed deleting data!');
                 else
-                    res.status(200).send('failed deleting data!');
+                    response.status(200).send('failed deleting data!');
             });
         });
 })
