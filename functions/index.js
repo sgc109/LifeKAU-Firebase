@@ -14,17 +14,20 @@ exports.clearFoodReviews = functions.https.onRequest((request, response) => {
     var donorDbRef = db.ref('Food_reviews');
     var updateVal = {};
 
-    return donorDbRef
-        .once('value')
-        .then(snapshot => {
-            snapshot.forEach(childSnapshot => {
-                updateVal[childSnapshot.key] = null
+    if (request.query.password === 'King_God_Chungmugong_Emperor_Firebase_God_God_God!!!') {
+        return donorDbRef
+            .once('value')
+            .then(snapshot => {
+                snapshot.forEach(childSnapshot => {
+                    updateVal[childSnapshot.key] = null
+                });
+                return donorDbRef.update(updateVal, (error) => {
+                    if (!error)
+                        response.status(200).send('succeed deleting data!');
+                    else
+                        response.status(200).send('failed deleting data!');
+                });
             });
-            return donorDbRef.update(updateVal, (error) => {
-                if (!error)
-                    response.status(200).send('succeed deleting data!');
-                else
-                    response.status(200).send('failed deleting data!');
-            });
-        });
+    }
+    return 0;
 })
