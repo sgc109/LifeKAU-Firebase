@@ -11,10 +11,10 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
 
 exports.clearFoodReviews = functions.https.onRequest((request, response) => {
     var db = admin.database();
-    var donorDbRef = db.ref('Food_reviews');
+    var donorDbRef = db.ref('food_reviews');
     var updateVal = {};
 
-    if (request.query.password === 'King_God_Chungmugong_Emperor_Firebase_God_God_God!!!') {
+    if (request.query.password === 'asdf') {
         return donorDbRef
             .once('value')
             .then(snapshot => {
